@@ -1,5 +1,5 @@
 {% set name = "Frv" %}
-{% set version = "v4r35p6" %}
+{% set version = "v4r35p16" %}
 
 # handle Virgo version number format
 {% set semver_version = version|
@@ -9,7 +9,7 @@
  %}
 
 # dependencies
-{% set framel_version = "8.41.1" %}
+{% set framel_version = "8.42.1" %}
 
 package:
   name: {{ name|lower }}
@@ -17,7 +17,7 @@ package:
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3d07a5df369620a842c370eece499a02cce78d3ef7eb5d0a89026f11b2ba55b4
+  sha256: 728692493c2384fbf46ca14201730596aabd8d0404c7bbf76c11212fa571254b
   patches:
     # remove whitespace from pkg-config requirements in cmake
     - pkg-config-requirements.patch
@@ -27,7 +27,7 @@ build:
     - {{ pin_subpackage("frv", max_pin="x") }}
   ignore_run_exports:
     - m2w64-gcc-libs  # [win]
-  number: 1
+  number: 0
 
 requirements:
   build:
