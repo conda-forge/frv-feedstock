@@ -43,7 +43,7 @@ test:
   commands:
     - if not exist %LIBRARY_INC%\\frv\\Frv.h exit 1  # [win]
     - test -f ${PREFIX}/include/frv/Frv.h  # [unix]
-    - pkg-config --print-errors --exact-version "{{ semver_version }}" frv
+    - pkg-config --print-errors --exact-version "{{ version }}" frv
 
 about:
   home: https://git.ligo.org/virgo/virgoApp/{{ name }}/
