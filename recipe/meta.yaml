@@ -1,28 +1,16 @@
 {% set name = "Frv" %}
-{% set version = "v4r36" %}
-
-# handle Virgo version number format
-{% set semver_version = version|
-    replace('v', '', 1)|
-    replace('r', '.', 1)
- %}
-# Check if patch number is version string
-{% if 'p' in semver_version %}
-    {% set semver_version = semver_version| replace('p', '.', 1) %}
-{% else %}
-    {% set semver_version = semver_version ~ '.0' %}
-{% endif %}
+{% set version = "4.38.6" %}
 
 # dependencies
-{% set framel_version = "8.42.1" %}
+{% set framel_version = "8.46.1" %}
 
 package:
   name: {{ name|lower }}
-  version: {{ semver_version }}
+  version: {{ version }}
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: cebb6f7de29361915ff21c8aa1ad1724d25a4fa9b846d8240972378a35baf6dd
+  sha256: 99035809e44feaf14f1241f6b88fec4fbf0da26d95650f501efacb066c5d487e
   patches:
     # remove whitespace from pkg-config requirements in cmake
     - pkg-config-requirements.patch
