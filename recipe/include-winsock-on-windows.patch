@@ -1,0 +1,62 @@
+diff --git a/meson.build b/meson.build
+index 4ceb296..c4ca291 100644
+--- a/meson.build
++++ b/meson.build
+@@ -5,11 +5,21 @@ pkgconfig = import('pkgconfig')
+ cc = meson.get_compiler('c')
+ 
+ libm = cc.find_library('m')
++if build_machine.system() == 'windows'
++	libwinsock = cc.find_library('ws2_32')
++endif
++
+ frame = dependency('framel', version:'>=8.38.1')
+ fftw = dependency('fftw3', version:'>=3.3.8')
+ fftwf = dependency('fftw3f')
+ 
+ frv_deps = [frame, fftw, fftwf]
+-frv_priv_deps = [libm]
++
++if build_machine.system() == 'windows'
++	frv_priv_deps = [libm, libwinsock]
++else
++	frv_priv_deps = [libm]
++endif
++
+ 
+ subdir('src')
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index e652d42..3980da3 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -35,7 +35,11 @@ set_target_properties(
+ 	PUBLIC_HEADER "${LIBFRV_HEADERS}"
+ 	)
+ 
+-target_link_libraries(${PROJECT_NAME} PUBLIC m PkgConfig::FRVDEPS)
++if(WIN32)
++  target_link_libraries(${PROJECT_NAME} PUBLIC m PkgConfig::FRVDEPS ws2_32)
++else()
++  target_link_libraries(${PROJECT_NAME} PUBLIC m PkgConfig::FRVDEPS)
++endif()
+ 
+ install(TARGETS ${PROJECT_NAME}
+ 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+diff --git a/src/FrvCopy.c b/src/FrvCopy.c
+index cf2af8c..1997f9b 100644
+--- a/src/FrvCopy.c
++++ b/src/FrvCopy.c
+@@ -34,7 +34,13 @@
+ #include <stdarg.h>
+ #include <ctype.h>
+ #include "FrvCopy.h"
++#if (defined(_WIN32) || defined(__WIN32__))
++#include <winsock.h>
++typedef unsigned __int32 uint32_t;
++typedef unsigned __int16 uint16_t;
++#else
+ #include <netinet/in.h>
++#endif
+ 
+ /*---------------------------------define to use FFTW malloc/free functions--*/
+ #ifdef FFTW_MALLOC
