@@ -14,6 +14,8 @@ source:
   patches:
     # remove whitespace from pkg-config requirements in cmake
     - pkg-config-requirements.patch
+    # include winsock on windows so the FrvWriteWave works on windows
+    - include-winsock-on-windows.patch
 
 build:
   run_exports:
