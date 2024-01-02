@@ -1,28 +1,16 @@
 {% set name = "Frv" %}
-{% set version = "v4r36" %}
-
-# handle Virgo version number format
-{% set semver_version = version|
-    replace('v', '', 1)|
-    replace('r', '.', 1)
- %}
-# Check if patch number is version string
-{% if 'p' in semver_version %}
-    {% set semver_version = semver_version| replace('p', '.', 1) %}
-{% else %}
-    {% set semver_version = semver_version ~ '.0' %}
-{% endif %}
+{% set version = "4.38.7" %}
 
 # dependencies
-{% set framel_version = "8.42.1" %}
+{% set framel_version = "8.46.1" %}
 
 package:
   name: {{ name|lower }}
-  version: {{ semver_version }}
+  version: {{ version }}
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: cebb6f7de29361915ff21c8aa1ad1724d25a4fa9b846d8240972378a35baf6dd
+  sha256: 11cc5bac23ee0a589a68577cc9ee3d698b48325e872899071e513eb5c982a437
   patches:
     # remove whitespace from pkg-config requirements in cmake
     - pkg-config-requirements.patch
@@ -55,7 +43,7 @@ test:
   commands:
     - if not exist %LIBRARY_INC%\\frv\\Frv.h exit 1  # [win]
     - test -f ${PREFIX}/include/frv/Frv.h  # [unix]
-    - pkg-config --print-errors --exact-version "{{ semver_version }}" frv
+    - pkg-config --print-errors --exact-version "{{ version }}" frv
 
 about:
   home: https://git.ligo.org/virgo/virgoApp/{{ name }}/
