@@ -1,5 +1,5 @@
 {% set name = "Frv" %}
-{% set version = "4.38.7" %}
+{% set version = "4.38.8" %}
 
 # dependencies
 {% set framel_version = "8.46.1" %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 11cc5bac23ee0a589a68577cc9ee3d698b48325e872899071e513eb5c982a437
+  sha256: 488129f07ee600c888c146bb047a20404d0ed6263ec9d83f925bc6d42f737071
   patches:
     # remove whitespace from pkg-config requirements in cmake
     - pkg-config-requirements.patch
