@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: Frv
-  version: 4.39.1
+  version: 4.39.3
   framel_version: 8.46.1
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/${{ name }}/-/archive/${{ version }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 778513e32fa8fd0d3b44e4467f355ad5c0aa5b6d042181276c0ff7fb6c9d4945
+  sha256: 3d3904ce2598e6f9bc5856659940b8460b2c177a36dbf940758a100c9edc512a
   patches:
     # remove whitespace from pkg-config requirements in cmake
     - pkg-config-requirements.patch
