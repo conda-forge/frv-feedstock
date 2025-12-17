@@ -5,6 +5,8 @@ channel_targets:
 fftw:
 - '3'
 m2w64_c_compiler:
-- m2w64-toolchain
+- gcc
+m2w64_c_compiler_version:
+- '14'
 target_platform:
 - win-64
