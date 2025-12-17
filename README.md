@@ -9,7 +9,7 @@ Package license: LGPL-2.1-or-later
 
 Summary: The Frame Vector Library (Frv)
 
-Development: https://git.ligo.org/virgo/virgoApp/Frv.git
+Development: https://git.ligo.org/virgo/virgoApp/Frv
 
 Frv is a utility library dedicated to vector manipulation.
 The vectors used in this package are the Frame Library vectors (FrVect)
@@ -24,7 +24,6 @@ processing.
 
 This code is written in C. It is thread safe and could be easily used in C
 or C++ software.
-
 
 Current build status
 ====================
@@ -194,6 +193,6 @@ Feedstock Maintainers
 =====================
 
 * [@duncanmmacleod](https://github.com/duncanmmacleod/)
+* [@erinelizabethseder-virgo](https://github.com/erinelizabethseder-virgo/)
 * [@fcarbogn](https://github.com/fcarbogn/)
-* [@rhyspoulton](https://github.com/rhyspoulton/)
 
