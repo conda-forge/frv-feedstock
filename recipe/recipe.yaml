@@ -24,9 +24,11 @@ requirements:
     - if: win
       then:
         - ${{ compiler('m2w64_c') }}
+        - ${{ stdlib('m2w64_c') }}
         - ninja
       else:
         - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
         - make
     - cmake
     - pkg-config
