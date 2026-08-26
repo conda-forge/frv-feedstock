@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   version: "4.41.4"
-  framel_version: 8.39.2
+  framel_version: 8.40.5
 
 package:
   name: frv
