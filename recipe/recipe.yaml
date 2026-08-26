@@ -3,7 +3,7 @@ schema_version: 1
 context:
   name: Frv
   version: "4.41.4"
-  framel_version: 8.46.1
+  framel_version: 8.39.2
 
 package:
   name: ${{ name|lower }}
@@ -34,10 +34,7 @@ requirements:
     - pkg-config
   host:
     - fftw
-    - libframel >=${{ framel_version }}
-  run:
-    - fftw
-    - libframel >=${{ framel_version }}
+    - libframel ${{ framel_version }}.*
   run_exports:
     - ${{ pin_subpackage("frv", upper_bound="x") }}
   ignore_run_exports:
